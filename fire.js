@@ -1,12 +1,14 @@
 const firePixelArray = new Array;
-const fireWidth = 15;
-const fireHeight = 10;
+const fireWidth = 3;
+const fireHeight = 3;
 
 function start(){
     createFireEstructure();
     creatorFireResource();
     calculateFirePropagation();
     renderFire();
+    console.countReset();
+    setInterval(() => start(), 3000);
 }
 function createFireEstructure(){
     const numberOfPixels = fireWidth * fireHeight;
@@ -15,18 +17,30 @@ function createFireEstructure(){
     }
 }
 function creatorFireResource(){
-    let lastRowIndex = (fireHeight * fireWidth) - fireWidth;
+    const lastRowIndex = (fireHeight * fireWidth) - fireWidth;
     for (let column = 0; column < fireWidth; column++){
         firePixelArray[lastRowIndex + column] = 36;
     }
 }
 function calculateFirePropagation(){
     for (let column = 0; column < fireWidth; column++){
-        for (let row = 0; row < fireWidth; row++){
-            const pixelIndex = (fireHeight * row) + column;
-            console.log(pixelIndex);
-        }   
+        for (let row = 0; row < fireHeight; row++){
+            const pixelIndex = column + (fireWidth * row);
+            updateFireIntesityPerPixel(pixelIndex);
+        }
     }
+}
+function updateFireIntesityPerPixel(currentPixelIndex){
+    const belowPixelIndex = currentPixelIndex + fireWidth;
+    if (belowPixelIndex >= fireHeight * fireWidth){
+        return 1;
+    }
+    const decay = 1;
+    const belowPixelFireIntesity = firePixelArray[belowPixelIndex];
+    const newFireIntesity = belowPixelFireIntesity - decay;
+    console.count();
+    
+    firePixelArray[currentPixelIndex] = newFireIntesity;    
 }
 function renderFire(){
     let table = '<table cellspacing="0" cellpadding="0">';
