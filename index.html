@@ -8,23 +8,54 @@
     <title>DOOM fire</title>
 </head>
 <body>
+    <div id="doom-logo">
+        <img src="doom_logo.png" alt="doom logo">
+    </div>
     <div id="fogo"></div>
-
+    <div id="controls">
+        <button>Mais fogo</button>
+        <button>Menos fogo</button>
+        <button>Apagar fogo</button>
+        <button>Acender fogo</button>
+        <button>Vento para a direita</button>
+        <button>Vento para a esquerda</button>
+    </div>
     <style>
         body{
             display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
+            background-color: black;
         }
-        #fogo{
-            position: absolute;
-            bottom: 5%;
+        #doom-logo{
+            margin-top: 5vh;
         }
-        table{
-            border: 1px solid black;
+        #doom-logo img{
+            width: 40vw;
         }
         td {
-            text-align: center;
             padding: 3px;
+        }
+        #controls{
+            text-align: center;
+            margin: 5vw;
+        }
+        button {
+            background-color: brown;
+            border: none;
+            color: white;
+            padding: 10px 26px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 10px;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition: ease-in-out .3s;
+        }
+        button:hover{
+            background-color: rgb(190, 52, 52);
         }
     </style>
 </body>
