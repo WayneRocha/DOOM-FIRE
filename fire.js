@@ -47,8 +47,10 @@ function updateFireIntesityPerPixel(currentPixelIndex){
     const newFireIntesity = belowPixelFireIntesity - decay >= 0 ? belowPixelFireIntesity - decay : 0;
 
     if (direction){
+        console.log('esquerda')
         firePixelArray[currentPixelIndex - decay] = newFireIntesity;
     } else {
+        console.log('direita')
         firePixelArray[currentPixelIndex + decay] = newFireIntesity;
     }
 }
@@ -83,8 +85,8 @@ function addListnerToButtons(){
     buttons[1].addEventListener('click', lessFireIntensity);
     buttons[2].addEventListener('click', killFireIntensity);
     buttons[3].addEventListener('click', igniteFireIntesity);
-    buttons[4].addEventListener('click', function() { changeWindDirection(1) });
-    buttons[5].addEventListener('click', function() { changeWindDirection(0) });
+    buttons[4].addEventListener('click', function() { changeWindDirection(true) });
+    buttons[5].addEventListener('click', function() { changeWindDirection(false) });
 }
 function moreFireIntensity(){
     fireIntesity += fireIntesity + 2 <= 36 ? 2 : 0;
@@ -102,9 +104,8 @@ function killFireIntensity(){
     fireIntesity = 0;
     creatorFireResource();
 }
-function changeWindDirection(direction){
-    if (direction == 0) direction = true
-    else direction = false;
+function changeWindDirection(dir){
+    direction = dir;
     creatorFireResource();
 }
 
