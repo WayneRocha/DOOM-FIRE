@@ -47,32 +47,22 @@ function updateFireIntesityPerPixel(currentPixelIndex){
     const newFireIntesity = belowPixelFireIntesity - decay >= 0 ? belowPixelFireIntesity - decay : 0;
 
     if (direction){
-        console.log('esquerda')
         firePixelArray[currentPixelIndex - decay] = newFireIntesity;
     } else {
-        console.log('direita')
         firePixelArray[currentPixelIndex + decay] = newFireIntesity;
     }
 }
 function renderFire(){
-    const debug = false;
     let table = '<table cellspacing="0" cellpadding="0">';
     for (let row = 0; row < fireHeight; row++){
         table += '<tr>';
         for (let column = 0; column < fireWidth; column++){
             const pixelIndex = column + row * fireWidth;
             const fireIntensity = firePixelArray[pixelIndex];
-            if (debug){
-                table += '<td>'
-                table += fireIntensity;
-                table += '</td>'
-            } else {
-                let palette = fireColorsPalette[fireIntensity];
-                let rgbColor = `${palette.r}, ${palette.g}, ${palette.b}`;
-                table += `<td style="background-color: rgb(${rgbColor});"`;
-                table += '</td>'
-            }
-            
+            let palette = fireColorsPalette[fireIntensity];
+            let rgbColor = `${palette.r}, ${palette.g}, ${palette.b}`;
+            table += `<td style="background-color: rgb(${rgbColor});"`;
+            table += '</td>'
         }
         table += '</tr>';
     }
