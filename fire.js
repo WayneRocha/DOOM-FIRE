@@ -14,7 +14,7 @@ function start(){
     creatorFireResource();
     calculateFirePropagation();
 
-    setInterval(calculateFirePropagation, 50);
+    setInterval(calculateFirePropagation, 30);
 }
 function createFireEstructure(){
     const numberOfPixels = fireWidth * fireHeight;
